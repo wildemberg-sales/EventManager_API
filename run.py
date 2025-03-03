@@ -1,4 +1,4 @@
-from src.main.server.server import app
-
+from src.main.server.server import api
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port="3000", debug=True)
+    import uvicorn
+    uvicorn.run(api, host="127.0.0.1", port=8000)
