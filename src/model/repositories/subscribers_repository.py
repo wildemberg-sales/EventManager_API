@@ -3,14 +3,14 @@ from src.model.entities.inscritos import Inscritos
 from .interfaces.subscribers_repository import SubscribersRepositoryInterface
 
 class SubscribersRepository(SubscribersRepositoryInterface):
-    def insert(self, subscriber_infos:dict) -> None:
+    def insert(self, subscriber_infos:any) -> None:
         with DbConnectionHandler() as db:
             try:
                 new_subscriber = Inscritos( 
-                                        nome=subscriber_infos.get("name"),
-                                        email=subscriber_infos.get("email"),
-                                        link=subscriber_infos.get("link"),
-                                        evento_id=subscriber_infos.get("evento_id"))
+                                        nome=subscriber_infos.name,
+                                        email=subscriber_infos.email,
+                                        link=subscriber_infos.link,
+                                        evento_id=subscriber_infos.evento_id)
                 
                 db.session.add(new_subscriber)
                 db.session.commit()
