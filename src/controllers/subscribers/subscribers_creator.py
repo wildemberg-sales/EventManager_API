@@ -27,7 +27,7 @@ class SubscriberCreator:
         return HttpResponse(
             body={
                 "data":{
-                    "Type": "Event",
+                    "Type": "Subscriber",
                     "Count": 1,
                     "attributes":{
                         "subscriber_info": subscriber_info
