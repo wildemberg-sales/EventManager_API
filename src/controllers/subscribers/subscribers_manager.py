@@ -7,14 +7,14 @@ class SubscriberManager:
         self.__subscriber_repo = subscriber_repo
     
     def get_subscribers_by_link(self, http_request: HttpRequest) -> HttpResponse:
-        link = http_request.param.link
-        event_id = http_request.param.event_id
+        link = http_request.param["link"]
+        event_id = http_request.param["event_id"]
         
         subs = self.__subscriber_repo.select_subscribers_by_link(link, event_id)
         return self.__format_subs_by_link(subs)
     
     def get_events_ranking(self, http_request: HttpRequest) -> HttpResponse:
-        event_id = http_request.param.event_id
+        event_id = http_request.param["event_id"]
         
         event_ranking = self.__subscriber_repo.get_ranking(event_id)
         return self.__format_event_ranking(event_ranking)
@@ -25,7 +25,7 @@ class SubscriberManager:
         for position in event_ranking:
             formatted_event_ranking.append(
                 {
-                    "link": position.nome,
+                    "link": position.link,
                     "total_subscribers": position.total
                 }
             )
